@@ -2,13 +2,15 @@ import java.util.ArrayList;
 
 public class GilgCity {
 
-    public ArrayList<Block> blocks = new ArrayList();
+    private ArrayList<Block> blocks = new ArrayList<>();
     private int score;
     private int gills;
+    private boolean hasArmy;
 
     public GilgCity(){
         gills = 30000;
         score = 0;
+        hasArmy = false;
     }
 
     public int seeScore(){
@@ -19,30 +21,77 @@ public class GilgCity {
         return gills;
     }
 
+    public boolean isThisBlockIdExists(int blockId){
+        for (Block block : blocks){
+            if (block.getId() == blockId){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addBlock(){
         int maxId = 0;
-        for (Block block : blocks){
-            int thisBlockId = block.getId();
-            if (thisBlockId > maxId)
-                maxId = thisBlockId;
-        }
-        if (gills >= 1000) {
+        if (gills < 1000){
+            System.out.println("not possible");
+        } else {
+            for (Block block : blocks) {
+                int thisBlockId = block.getId();
+                if (thisBlockId > maxId)
+                    maxId = thisBlockId;
+            }
             blocks.add(new Block(maxId + 1));
             System.out.println(maxId + 1);        //id sh ro chap mikonim
         }
-        else System.out.println("not possible");
     }
 
-    public void removeBlock(int blockId){
+    //bikar kardane afrad ro naneveshtim
+    public void removeBlock(int deletingBlockId){
+        int index = -1;
         for (int i = 0; i < blocks.size(); i++){
-            //int thisBlockId = block.getId();
+            int thisBlockId = blocks.get(i).getId();
             //agar id e in block hamun id E bud ke bayad hazf beshe hazfesh mikonim
-
+            if (thisBlockId == deletingBlockId){
+                index = thisBlockId;
+            }
+        }
+        if (index == -1){
+            System.out.println("not possible");
+        } else {
+            blocks.remove(index);
+            gills += 500;
         }
     }
 
-    public void upgradeBlock(int BlockId){
+    //mashghul kardane afrad ro benevis
+    public void upgradeBlock(int deletingBlockId){
+        int index = -1 ;
+        for (int i = 0; i < blocks.size(); i++){
+            int thisId = blocks.get(i).getId();
+            if (thisId == deletingBlockId){
+                index = i;
+            }
+        }
+        if (index == -1) {
+            System.out.println("not possible");
+        } else {
+            int cost = blocks.get(index).getUpgradeCost();
+            if (gills < cost){
+                System.out.println("not possible");
+            } else {
+                gills -= cost;
+                blocks.get(index).upgradeBlock();
+            }
+        }
+    }
 
+    //check kon niruye kafi darim ya na
+    //niruhaye artesh az hamun block bayad tamin beshan
+    public void addArmy(int blockId){
+        if (hasArmy){
+            System.out.println("not possible");
+        } else {
+        }
     }
 
 }
