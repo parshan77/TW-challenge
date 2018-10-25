@@ -1,4 +1,5 @@
 public class Army extends Building{
+
     private double attackLevel;
 
     public Army(int id, int blockId){
@@ -29,14 +30,6 @@ public class Army extends Building{
 
     public int getBlockId() {
         return blockId;
-    }
-
-    public int getUpgradeCost() {
-        return 20000;
-    }
-
-    public static int getAddCost() {
-        return 15000;
     }
 
     public int getRemoveCost() {

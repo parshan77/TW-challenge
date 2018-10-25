@@ -44,13 +44,23 @@ public class Block {
         return maxBuildings;
     }
 
-    public boolean isThisBuildingIdExists(int id){
-        for (Building building : buildings){
-            if (building.getId() == id){
-                return true;
+    public int getThisBuildingIndex(int buildingId){
+        for (int i = 0; i < buildings.size(); i++){
+            if (buildings.get(i).getId() == id){
+                return id;
             }
         }
-        return false;
+        return -1;
+    }
+
+    public int getLastUsedId(){
+        int lastId = 0;
+        for (Building building : buildings) {
+            if (building.id > lastId){
+                lastId = building.id;
+            }
+        }
+        return lastId;
     }
 
 }

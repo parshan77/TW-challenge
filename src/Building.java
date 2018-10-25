@@ -1,12 +1,12 @@
 public abstract class Building {
 
-    int blockId;
-    int level;
-    int id;
-    int capacity;
-    int daysActivated;
-    int baseScore;
-    int maxLevel;
+    protected int blockId;
+    protected int level;
+    protected int id;
+    protected int capacity;
+    protected int daysActivated;
+    protected int baseScore;
+    protected int maxLevel;
 
     public int getScore(){
         return (int) Math.pow(baseScore, daysActivated);
