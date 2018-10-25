@@ -16,7 +16,7 @@ public class Floor {
         for (Unit unit : units){
             score += unit.getScore();
             for (Person person : unit.persons){
-                score += 2 * person.getscore();
+                score += 2 * person.getScore();
             }
         }
         return score;
