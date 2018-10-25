@@ -6,7 +6,7 @@ public class Unit {
     public int getScore(){
         int score = 2;
         for (Person person : persons){
-            score += person.getscore();
+            score += person.getScore();
         }
         return score;
     }
