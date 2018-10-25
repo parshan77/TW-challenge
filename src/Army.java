@@ -38,5 +38,19 @@ public class Army extends Building{
     }
 
 
+    public int getUpgradeCost() {
+        return 20000;
+    }
+
+
+    public int getAddCost() {
+        return 15000;
+    }
+
+
+    public int getRemoveCost() {
+        return -10000;
+    }
+
 }
 
