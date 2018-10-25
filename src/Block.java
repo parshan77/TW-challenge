@@ -18,6 +18,11 @@ public class Block {
     public void upgradeBlock() {
         this.maxBuildings += 5;
     }
+    public int getUnemployedPeople(){
+        for (Building building : buildings){
+            for (Floor floor : building.)
+        }
+    }
 
     public int getUpgradeCost(){
         return (int) Math.pow(500, level);

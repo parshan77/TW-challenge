@@ -21,8 +21,18 @@ public class Defence extends Building{
         return (int) Math.pow(15, daysActivated);
     }
 
-    @Override
-    public int getUpgradeCost() {
+
+    public int getUpgradeDefeCost() {
         return 5000;
+    }
+
+
+    public int getAddDefenceCost() {
+        return 10000;
+    }
+
+
+    public int getRemoveDefenceCost() {
+        return -10000;
     }
 }

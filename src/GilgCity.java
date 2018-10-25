@@ -85,6 +85,24 @@ public class GilgCity {
         }
     }
 
+
+    public void addHome(int blockId, int floors, int units){
+        int maxId = 0;
+        int index = 0;
+        for (int i = 0; i < blocks.size(); i++){
+            if (blocks.get(i).getId() == blockId)
+                index = i;
+        }
+        if (gills > Home.getAddHomeCost(units, floors)){
+            maxId = blocks.get(index).buildings.size() - 1;
+            if (maxId < blocks.get(index).getMaxBuildings())
+                new Home(maxId + 1, blockId);
+        }
+
+
+    }
+
+
     //check kon niruye kafi darim ya na
     //niruhaye artesh az hamun block bayad tamin beshan
     public void addArmy(int blockId){

@@ -25,6 +25,6 @@ public abstract class Building {
         this.daysActivated ++ ;
     }
 
-    public abstract int getUpgradeCost();
+
 
 }
