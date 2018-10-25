@@ -17,6 +17,10 @@ public abstract class Building {
         else System.out.println("not possible");
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void dayPassed(){
         this.daysActivated ++ ;
     }
