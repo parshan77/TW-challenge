@@ -109,5 +109,34 @@ public class GilgCity {
         } else {
         }
     }
+    public void addBazar(int BlockId){
+        for (Block block : blocks){
+            if(BlockId == block.getId()){
+                this.gills -= 6000;
+            }
+        }
+    }
+
+    public void removeBazar(int BlockId ,int UnitId){
+        for (Block block : blocks){
+            if(BlockId ==block.getId()){
+                for (int i = 0; i < block.buildings.size(); i++){
+                    if (block.buildings.get(i).id == UnitId)
+                        this.gills -= 500;
+                }
+            }
+        }
+    }
+    public void upgradeBazar(int BlockId,int UnitId){
+        for (Block block : blocks){
+            if(BlockId ==block.getId()){
+                for (int i = 0; i < block.buildings.size(); i++){
+                    if (block.buildings.get(i).id == UnitId)
+                        this.gill -= 5000 * (1 + block.buildings.get(i).level);
+
+                }
+            }
+        }
+    }
 
 }

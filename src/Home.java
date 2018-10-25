@@ -22,7 +22,6 @@ public class Home extends Building{
 
 
 
-
     public void addFloor(int addingFloors) {
         numberOfUnits = floors.get(0).units.size();
         int numberOfFloorsNow = this.floors.size();
