@@ -19,7 +19,6 @@ public class Home extends Building{
 
 
 
-
     public void addFloor(int addingFloors) {
         int numberOfFloorsNow = this.floors.size();
         if (numberOfFloorsNow + addingFloors <= 6){

@@ -44,5 +44,28 @@ public class GilgCity {
     public void upgradeBlock(int BlockId){
 
     }
+    public void addBazar(int BlockId){
+        for (Block block : blocks){
+            if(BlockId == block.getId()){
+                this.gills -= 6000;
+            }
+        }
+    }
+    public void removeBazar(int BlockId ,int UnitId){
+        for (Block block : blocks){
+            if(BlockId ==block.getId()){
+                for (int i = 0; i < block.buildings.size(); i++){
+                    if (block.buildings.get(i).)
+                }
+            }
+        }
+    }
+    public void upgradeBazar(int BlockId,int UnitId){
+        for (Block block : blocks){
+            if(UnitId ==block.getId() ){
+
+            }
+        }
+    }
 
 }
