@@ -132,7 +132,7 @@ public class GilgCity {
             if(BlockId ==block.getId()){
                 for (int i = 0; i < block.buildings.size(); i++){
                     if (block.buildings.get(i).id == UnitId)
-                        this.gill -= 5000 * (1 + block.buildings.get(i).level);
+                        this.gills -= 5000 * (1 + block.buildings.get(i).level);
 
                 }
             }
