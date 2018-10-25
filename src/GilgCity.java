@@ -95,8 +95,11 @@ public class GilgCity {
     }
     public void addBazar(int BlockId){
         for (Block block : blocks){
-            if(BlockId == block.getId()){
-                this.gills -= 6000;
+            if (block.buildings.size() < block.getMaxBuildings()) {
+                if (BlockId == block.getId() && gills >= 6000) {
+                    this.gills -= 6000;
+                    new Bazaar(BlockId);
+                }
             }
         }
     }
