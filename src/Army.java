@@ -1,4 +1,4 @@
-public class Army {
+public class Army extends Building{
     private double attackLevel;
     private int level = 1;
     private int id;
@@ -9,6 +9,7 @@ public class Army {
     public Army(int id, int blockId){
         this.id = id;
         this.blockId = blockId;
+        this.maxLevel = 5;
     }
 
     public double getAttackLevel() {

@@ -6,7 +6,7 @@ public class Home extends Building{
     public int getScore(){
         int score = 10;
         for (Floor floor : floors) {
-            socore+= floor.getScore();
+            score+= floor.getScore();
             for (Unit unit : floor.units){
                 score += 2 * unit.getScore();
                 for (Person person : unit.persons){
