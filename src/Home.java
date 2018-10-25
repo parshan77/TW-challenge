@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Home extends Building{
+
     public ArrayList<Floor> floors = new ArrayList<>();
 
     public int getScore(){
@@ -27,7 +28,7 @@ public class Home extends Building{
         int numberOfFloorsNow = this.floors.size();
         if (numberOfFloorsNow + addingFloors <= 6){
             for (int i = 0; i < addingFloors; i++) {
-                this.floors.add(new Floor(numberOfUnits));
+                this.floors.add(new Floor(numberOfUnits));  //?
             }
         }
     }
@@ -35,17 +36,21 @@ public class Home extends Building{
 
     }
 
-    public Home(int id,int blockId){
+    public Home(int id, int blockId, int floors, int units) {
         this.id = id;
         this.blockId = blockId ;
+        for (int i = 0; i < floors; i++){
+            this.floors.add(new Floor(units));
+        }
+
     }
 
     public static int getAddHomeCost(int floors, int units) {
-        return floors * 300 + units * 100 + 700;
+        return floors * 300 + (units * floors) * 100 + 700;
     }
 
 
     public static int getUpgradeHomeCost(int unit, int floor) {
-        return unit * 50 + floor * 300;
+        return (unit * floor) * 50 + floor * 300;
     }
 }

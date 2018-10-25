@@ -21,6 +21,10 @@ public abstract class Building {
         return id;
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
     public void dayPassed(){
         this.daysActivated ++ ;
     }

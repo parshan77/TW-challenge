@@ -9,7 +9,7 @@ public class Bazaar extends Building {
 
     }
 
-    @Override
+
     public int getUpgradeCost() {
         return (level + 1) * 5000;
     }
