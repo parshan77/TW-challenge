@@ -79,7 +79,7 @@ public class GilgCity {
             System.out.println("not possible");
             return;
         }
-        if (!blocks.get(index).isUpgradable()){
+        if (!blocks.get(index).isUpgradable()) {
             System.out.println("not possible");
             return;
         }
@@ -92,29 +92,35 @@ public class GilgCity {
         blocks.get(index).upgradeBlock();
     }
 
-
-    public void addHome(int blockId, int floors, int units){
-        int maxId = 0;
-        int index = 0;
-        index = getThisBlockIndex(blockId);
-        if (index == -1){
+    public void addHome(int blockId, int floors, int units) {
+        int index = getBlockIndex(blockId);
+        if (index == -1) {              //blocky ba in id darim?
             System.out.println("not possible");
             return;
         }
-        if (blocks.get(index).buildings.size() < blocks.get(index).getMaxBuildings()) {
-            if (gills > Home.getAddHomeCost(units, floors)) {
-                gills -= Home.getAddHomeCost(units, floors);
-                new Home(maxId + 1, blockId, floors, units);
-                System.out.println(maxId + 1);
-            }
-            else {
-                System.out.println("not possible");
-            }
-        }
-        else {
+        if (blocks.get(index).buildings.size() >= blocks.get(index).getMaxBuildings()) {    //blockemun ja dare?
             System.out.println("not possible");
+            return;
         }
+        if (!((floors >= 3) && (floors <= 6))) {
+            System.out.println("not possible");
+            return;
+        }
+        if (!((units >= 1) && (units <= 4))) {
+            System.out.println("not possible");
+            return;
+        }
+        int cost = Home.getAddHomeCost(floors, units);
+        if (gills < cost) {
+            System.out.println("not possible");
+            return;
+        }
+        int id = blocks.get(index).getLastUsedId() + 1;
+        blocks.get(index).buildings.add(new Home(id, blockId, floors, units));
+        System.out.println(id);
+        gills -= cost;
     }
+
 
     //check kon niruye kafi darim ya na
     //niruhaye artesh az hamun block bayad tamin beshan
@@ -133,7 +139,7 @@ public class GilgCity {
             System.out.println("not possible");
             return;
         }
-        if (blocks.get(index).getUnemployedPeople() < 100){     //afrade kafi
+        if (blocks.get(index).getUnemployedPeople() < 100) {     //afrade kafi
             System.out.println("not possible");
             return;
         }
@@ -164,17 +170,18 @@ public class GilgCity {
         blocks.get(blockId).buildings.get(buildingId).upgrade();
         gills -= upgradeCost;
     }
-    public void addBazar(int blockId){
-        for (Block block : blocks){
-            if(blockId == block.getId()){
+
+    public void addBazar(int blockId) {
+        for (Block block : blocks) {
+            if (blockId == block.getId()) {
                 if (block.getUnemployedPeople() >= 50) {
                     if (gills >= 6000) {
                         this.gills -= 6000;
                         new Bazaar(blockId);
                         for (int i = 0; i < block.buildings.size(); i++) {
-                            if (block.buildings.get(i) instanceof Home){
-                                for (int j  = 0; j < ((Home) block.buildings.get(i)).floors.size(); j++){
-                                    for (int k = 0; k < ((Home) block.buildings.get(i)).floors.get(j).units.size(); k++){
+                            if (block.buildings.get(i) instanceof Home) {
+                                for (int j = 0; j < ((Home) block.buildings.get(i)).floors.size(); j++) {
+                                    for (int k = 0; k < ((Home) block.buildings.get(i)).floors.get(j).units.size(); k++) {
                                         //TODO : add people to Bazaar
                                     }
                                 }
