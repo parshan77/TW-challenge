@@ -45,10 +45,10 @@ public class Block {
         return maxBuildings;
     }
 
-    public int getThisBuildingIndex(int buildingId){
-        for (int i = 0; i < buildings.size(); i++){
-            if (buildings.get(i).getId() == id){
-                return id;
+    public int getBuildingIndex(int buildingId){
+        for (int index = 0; index < buildings.size(); index++){
+            if (buildings.get(index).getId() == id){
+                return index;
             }
         }
         return -1;

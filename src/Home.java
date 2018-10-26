@@ -44,11 +44,21 @@ public class Home extends Building {
     }
 
     public static int getAddHomeCost(int floors, int units) {
-        return 700 + 300 * floors + 100 * units;
+        return 700 + 300 * floors + 100 * (units * floors);
     }
 
-    public static int getUpgradeHomeCost(int addedUnits, int addedFloors) {
-        return addedFloors * 300 + addedUnits * 50;
+    //addedFloors, addedUnits = 0 ya 1
+    public int getUpgradeHomeCost(int addedUnits, int addedFloors) {
+        int cost;
+        int floorsBefore = this.floors.size();
+        int unitsInEachFloorBefore = this.floors.get(0).units.size();
+        if (addedFloors == 0) {
+            cost = addedUnits * floorsBefore;
+            return cost;
+        }
+        //added floors = 1:
+        cost = 300 * addedFloors + unitsInEachFloorBefore * 50 + (floorsBefore + addedFloors) * addedUnits;
+        return cost;
     }
 
 }

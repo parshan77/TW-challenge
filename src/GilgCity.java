@@ -121,6 +121,23 @@ public class GilgCity {
         gills -= cost;
     }
 
+    public void upgradeHome(int blockId, int buildingId, int addedFloors, int addedUnits){
+        int blockIndex = getBlockIndex(blockId);
+        if (blockIndex == -1) {               //blocky ba in id darim?
+            System.out.println("not possible");
+            return;
+        }
+        int buildingIndex = blocks.get(blockIndex).getBuildingIndex(buildingId);
+        if (buildingIndex == -1){               //building E ba in id darim
+            System.out.println("not possible");
+            return;
+        }
+        if (!(blocks.get(blockIndex).buildings.get(buildingIndex) instanceof Home)) {   //un building e home e?
+            System.out.println("not possible");
+            return;
+        }
+
+    }
 
     //check kon niruye kafi darim ya na
     //niruhaye artesh az hamun block bayad tamin beshan
@@ -158,7 +175,7 @@ public class GilgCity {
             System.out.println("not possible");
             return;
         }
-        int buildingIndex = blocks.get(blockId).getThisBuildingIndex(buildingId);
+        int buildingIndex = blocks.get(blockId).getBuildingIndex(buildingId);
         if (buildingIndex == -1) {
             System.out.println("not possible");
             return;
@@ -227,7 +244,7 @@ public class GilgCity {
             System.out.println("not possible");
             return;
         }
-        int buildingIndex = blocks.get(blockId).getThisBuildingIndex(buildingId);
+        int buildingIndex = blocks.get(blockId).getBuildingIndex(buildingId);
         if (buildingIndex == -1) {
             System.out.println("not possible");
             return;
