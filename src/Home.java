@@ -48,17 +48,29 @@ public class Home extends Building {
     }
 
     //addedFloors, addedUnits = 0 ya 1
-    public int getUpgradeHomeCost(int addedUnits, int addedFloors) {
+    public int getUpgradeHomeCost(boolean addUnits, boolean addFloors) {
         int cost;
         int floorsBefore = this.floors.size();
         int unitsInEachFloorBefore = this.floors.get(0).units.size();
-        if (addedFloors == 0) {
-            cost = addedUnits * floorsBefore;
+        if (!addFloors) {
+            if (addUnits) {
+                cost = 1 * floorsBefore;
+                return cost;
+            }
+            if (!addUnits){
+                return 0;
+            }
+        }
+        //addFloors = true:
+        if (addUnits) {
+            cost = 300 + unitsInEachFloorBefore * 50 + (floorsBefore + 1) * 1 * 50;
             return cost;
         }
-        //added floors = 1:
-        cost = 300 * addedFloors + unitsInEachFloorBefore * 50 + (floorsBefore + addedFloors) * addedUnits;
-        return cost;
+        return 0;
     }
+
+    //  public boolean isUpgradable(boolean addFloor, boolean addUnit) {}
+
+
 
 }

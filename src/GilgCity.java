@@ -121,14 +121,14 @@ public class GilgCity {
         gills -= cost;
     }
 
-    public void upgradeHome(int blockId, int buildingId, int addedFloors, int addedUnits){
+    public void upgradeHome(int blockId, int buildingId, boolean addFloors, boolean addedUnits) {
         int blockIndex = getBlockIndex(blockId);
         if (blockIndex == -1) {               //blocky ba in id darim?
             System.out.println("not possible");
             return;
         }
         int buildingIndex = blocks.get(blockIndex).getBuildingIndex(buildingId);
-        if (buildingIndex == -1){               //building E ba in id darim
+        if (buildingIndex == -1) {               //building E ba in id darim
             System.out.println("not possible");
             return;
         }
@@ -136,6 +136,7 @@ public class GilgCity {
             System.out.println("not possible");
             return;
         }
+        Home thisHome = (Home) blocks.get(blockIndex).buildings.get(buildingIndex);
 
     }
 
