@@ -96,7 +96,9 @@ public class GilgCity {
         }
         if (blocks.get(index).buildings.size() < blocks.get(index).getMaxBuildings()) {
             if (gills > Home.getAddHomeCost(units, floors)) {
+                gills -= Home.getAddHomeCost(units, floors);
                 new Home(maxId + 1, blockId, floors, units);
+                System.out.println(maxId + 1);
             }
             else {
                 System.out.println("not possible");
@@ -120,6 +122,10 @@ public class GilgCity {
             return;
         }
         if (gills < 15000) {        //poole kafi baraye sakhte army nadarim
+            System.out.println("not possible");
+            return;
+        }
+        if (blocks.get(index).getUnemployedPeople() < 100){     //afrade kafi
             System.out.println("not possible");
             return;
         }
@@ -150,10 +156,24 @@ public class GilgCity {
         blocks.get(blockId).buildings.get(buildingId).upgrade();
         gills -= upgradeCost;
     }
-    public void addBazar(int BlockId){
+    public void addBazar(int blockId){
         for (Block block : blocks){
-            if(BlockId == block.getId()){
-                this.gills -= 6000;
+            if(blockId == block.getId()){
+                if (block.getUnemployedPeople() >= 50) {
+                    if (gills >= 6000) {
+                        this.gills -= 6000;
+                        new Bazaar(blockId);
+                        for (int i = 0; i < block.buildings.size(); i++) {
+                            if (block.buildings.get(i) instanceof Home){
+                                for (int j  = 0; j < ((Home) block.buildings.get(i)).floors.size(); j++){
+                                    for (int k = 0; k < ((Home) block.buildings.get(i)).floors.get(j).units.size(); k++){
+                                        //TODO : add people to Bazaar
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
