@@ -89,16 +89,21 @@ public class GilgCity {
     public void addHome(int blockId, int floors, int units){
         int maxId = 0;
         int index = 0;
-        for (int i = 0; i < blocks.size(); i++){
-            if (blocks.get(i).getId() == blockId)
-                index = i;
+        index = getThisBlockIndex(blockId);
+        if (index == -1){
+            System.out.println("not possible");
+            return;
         }
         if (blocks.get(index).buildings.size() < blocks.get(index).getMaxBuildings()) {
             if (gills > Home.getAddHomeCost(units, floors)) {
-                maxId = blocks.get(index).buildings.size() - 1;
-                if (maxId < blocks.get(index).getMaxBuildings())
-                    new Home(maxId + 1, blockId, floors, units);
+                new Home(maxId + 1, blockId, floors, units);
             }
+            else {
+                System.out.println("not possible");
+            }
+        }
+        else {
+            System.out.println("not possible");
         }
     }
     //check kon niruye kafi darim ya na
