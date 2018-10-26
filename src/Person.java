@@ -1,7 +1,9 @@
 public class Person {
+
     private int daysOfWorking;
     private boolean isEmployed;
     private double score;
+
     public Person(){
         this.daysOfWorking = 0;
         this.isEmployed = false;
@@ -11,12 +13,15 @@ public class Person {
     public double getScore() {
         return score;
     }
+
     public void setScore(double score) {
         this.score = score;
     }
+
     public int getDaysOfWorking() {
         return daysOfWorking;
     }
+
     public void addDaysOfWorking() {
         this.daysOfWorking += 1;
     }
@@ -28,5 +33,7 @@ public class Person {
     public void employ() {
         isEmployed = true;
     }
+
     public void unemploy(){isEmployed = false; }
+
 }

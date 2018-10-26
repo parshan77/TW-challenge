@@ -31,48 +31,55 @@ public class GilgCity {
     }
 
     public void addBlock() {
+        int cost = 1000;
+        if (gills < cost) {
+            System.out.println("not possible");
+            return;
+        }
+        int id = getLastBlockId() + 1;
+        blocks.add(new Block(id));
+        System.out.println(id);        //id sh ro chap mikonim
+        gills -= cost;
+    }
+
+    private int getLastBlockId() {
         int maxId = 0;
-        if (gills < 1000) {
-            System.out.println("not possible");
-        } else {
-            for (Block block : blocks) {
-                int thisBlockId = block.getId();
-                if (thisBlockId > maxId)
-                    maxId = thisBlockId;
-            }
-            blocks.add(new Block(maxId + 1));
-            System.out.println(maxId + 1);        //id sh ro chap mikonim
+        for (Block block : blocks) {
+            int thisBlockId = block.getId();
+            if (thisBlockId > maxId)
+                maxId = thisBlockId;
         }
+        return maxId;
     }
 
-    //bikar kardane afrad ro naneveshtim
+    //ba hazfe bolook tamame anasore dakhelesh az bein miran -> benevis
     public void removeBlock(int deletingBlockId) {
-        int index = -1;
-        for (int i = 0; i < blocks.size(); i++) {
-            int thisBlockId = blocks.get(i).getId();
-            //agar id e in block hamun id E bud ke bayad hazf beshe hazfesh mikonim
-            if (thisBlockId == deletingBlockId) {
-                index = thisBlockId;
-            }
-        }
+        int income = 500;
+        int index = getBlockIndex(deletingBlockId);
         if (index == -1) {
             System.out.println("not possible");
-        } else {
-            blocks.remove(index);
-            gills += 500;
+            return;
         }
+        blocks.remove(index);
+        gills += income;
     }
 
-    //mashghul kardane afrad ro benevis
-    public void upgradeBlock(int deletingBlockId) {
-        int index = -1;
+    private int getBlockIndex(int blockId) {
         for (int i = 0; i < blocks.size(); i++) {
-            int thisId = blocks.get(i).getId();
-            if (thisId == deletingBlockId) {
-                index = i;
+            if (blocks.get(i).getId() == blockId) {
+                return i;
             }
         }
+        return -1;
+    }   //age block E ba in index nadashte bashim -1 midim
+
+    public void upgradeBlock(int upgradingBlockId) {
+        int index = getBlockIndex(upgradingBlockId);
         if (index == -1) {
+            System.out.println("not possible");
+            return;
+        }
+        if (!blocks.get(index).isUpgradable()){
             System.out.println("not possible");
             return;
         }
@@ -108,6 +115,7 @@ public class GilgCity {
             System.out.println("not possible");
         }
     }
+
     //check kon niruye kafi darim ya na
     //niruhaye artesh az hamun block bayad tamin beshan
     //ino nazadam
@@ -116,7 +124,7 @@ public class GilgCity {
             System.out.println("not possible");
             return;
         }
-        int index = getThisBlockIndex(blockId);
+        int index = getBlockIndex(blockId);
         if (index == -1) {      //blocki nadarim ke index esh in bashe
             System.out.println("not possible");
             return;
@@ -139,17 +147,17 @@ public class GilgCity {
             System.out.println("not possible");
             return;
         }
-        int blockIndex = getThisBlockIndex(blockId);
-        if (blockIndex == -1){
+        int blockIndex = getBlockIndex(blockId);
+        if (blockIndex == -1) {
             System.out.println("not possible");
             return;
         }
         int buildingIndex = blocks.get(blockId).getThisBuildingIndex(buildingId);
-        if (buildingIndex == -1){
+        if (buildingIndex == -1) {
             System.out.println("not possible");
             return;
         }
-        if (!(blocks.get(blockId).buildings.get(buildingId) instanceof Army)){
+        if (!(blocks.get(blockId).buildings.get(buildingId) instanceof Army)) {
             System.out.println("not possible");
             return;
         }
@@ -178,20 +186,21 @@ public class GilgCity {
         }
     }
 
-    public void removeBazar(int BlockId ,int UnitId){
-        for (Block block : blocks){
-            if(BlockId ==block.getId()){
-                for (int i = 0; i < block.buildings.size(); i++){
+    public void removeBazar(int BlockId, int UnitId) {
+        for (Block block : blocks) {
+            if (BlockId == block.getId()) {
+                for (int i = 0; i < block.buildings.size(); i++) {
                     if (block.buildings.get(i).id == UnitId)
                         this.gills -= 500;
                 }
             }
         }
     }
-    public void upgradeBazar(int BlockId,int UnitId){
-        for (Block block : blocks){
-            if(BlockId ==block.getId()){
-                for (int i = 0; i < block.buildings.size(); i++){
+
+    public void upgradeBazar(int BlockId, int UnitId) {
+        for (Block block : blocks) {
+            if (BlockId == block.getId()) {
+                for (int i = 0; i < block.buildings.size(); i++) {
                     if (block.buildings.get(i).id == UnitId)
                         this.gills -= 5000 * (1 + block.buildings.get(i).level);
 
@@ -200,28 +209,28 @@ public class GilgCity {
         }
     }
 
-
-    public void upgradeDefence(int blockId, int buildingId){
+    public void upgradeDefence(int blockId, int buildingId) {
         int upgradeCost = 5000;
         if (gills < upgradeCost) {
             System.out.println("not possible");
             return;
         }
-        int blockIndex = getThisBlockIndex(blockId);
-        if (blockIndex == -1){
+        int blockIndex = getBlockIndex(blockId);
+        if (blockIndex == -1) {
             System.out.println("not possible");
             return;
         }
         int buildingIndex = blocks.get(blockId).getThisBuildingIndex(buildingId);
-        if (buildingIndex == -1){
+        if (buildingIndex == -1) {
             System.out.println("not possible");
             return;
         }
-        if (!(blocks.get(blockId).buildings.get(buildingId) instanceof Defence)){
+        if (!(blocks.get(blockId).buildings.get(buildingId) instanceof Defence)) {
             System.out.println("not possible");
             return;
         }
         blocks.get(blockId).buildings.get(buildingId).upgrade();
         gills -= upgradeCost;
     }
+
 }

@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+
 public class Bazaar extends Building {
 
-    public Bazaar(int blockId){
+    public ArrayList<Person> employees = new ArrayList<>();
+
+    public Bazaar(int blockId) {
         this.level = 1;
         this.blockId = blockId;
         this.baseScore = 5;
@@ -8,7 +12,6 @@ public class Bazaar extends Building {
 
 
     }
-
 
     public int getUpgradeCost() {
         return (level + 1) * 5000;

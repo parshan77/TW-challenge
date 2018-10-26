@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 public class Army extends Building{
 
     private double attackLevel;
+    public ArrayList<Person> employees = new ArrayList<>();
 
     public Army(int id, int blockId){
         this.id = id;
