@@ -18,6 +18,7 @@ public class Block {
     public void upgradeBlock() {
         this.maxBuildings += 5;
     }
+
     public int getUnemployedPeople(){
         int unemployedPeople = 0;
         for (Building building : buildings) {
@@ -61,6 +62,12 @@ public class Block {
             }
         }
         return lastId;
+    }
+
+    public boolean isUpgradable(){
+        if (level < 3)
+            return true;
+        return false;
     }
 
 }
